@@ -6,9 +6,11 @@ declare_id!("Ex4CxjdqdvXsfcGFwgkgnp2fUsxYLFwPRJMoRmQ52B3W");
 pub mod blog {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        Ok(())
-    }
+    pub fn init_blog(ctx: Context<Initialize>) -> Result<()> {
+      let blog = &mut ctx.accounts.blog;
+      blog.authority = *ctx.accounts.authority.key;
+      Ok(())
+  }
 }
 
 #[derive(Accounts)]
