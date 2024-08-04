@@ -13,3 +13,21 @@ pub mod blog {
 
 #[derive(Accounts)]
 pub struct Initialize {}
+
+#[account]
+#[derive(Default)]
+pub struct Blog {
+    authority: Pubkey,
+    latest: Pubkey,
+    posts: u64,
+}
+
+#[account]
+#[derive(Default)]
+pub struct Post {
+    title: String,
+    content: String,
+    timestamp: i64,
+    blog: Pubkey,
+    previous: Pubkey   
+}
