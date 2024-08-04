@@ -12,7 +12,15 @@ pub mod blog {
 }
 
 #[derive(Accounts)]
-pub struct Initialize {}
+pub struct Initialize<'info> {
+    #[account(mut)]
+    pub authority: Signer<'info>,
+
+    #[account(init, seeds = [b"blog", authority.key().as_ref()], bump, payer = authority, space = 8 + size_of::<Blog>())]
+    pub blog: Account<'info, Blog>,
+
+    pub system_program: Program<'info, System>,
+}
 
 #[account]
 #[derive(Default)]
