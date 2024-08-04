@@ -1,4 +1,5 @@
 use anchor_lang::prelude::*;
+use std::mem::size_of;
 
 declare_id!("Ex4CxjdqdvXsfcGFwgkgnp2fUsxYLFwPRJMoRmQ52B3W");
 
