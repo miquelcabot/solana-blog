@@ -11,6 +11,22 @@ pub mod blog {
         blog.authority = *ctx.accounts.authority.key;
         Ok(())
     }
+
+    pub fn create_post(ctx: Context<CreatePost>, title: String, content: String) -> Result<()> {
+        let blog = &mut ctx.accounts.blog;
+        let post = &mut ctx.accounts.post;
+
+        post.previous = blog.latest;
+        post.blog = blog.key();
+        post.title = title;
+        post.content = content;
+        post.timestamp = Clock::get().unwrap().unix_timestamp;
+
+        blog.latest = post.key();
+        blog.posts += 1;
+
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
