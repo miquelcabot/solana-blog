@@ -7,10 +7,10 @@ pub mod blog {
     use super::*;
 
     pub fn init_blog(ctx: Context<Initialize>) -> Result<()> {
-      let blog = &mut ctx.accounts.blog;
-      blog.authority = *ctx.accounts.authority.key;
-      Ok(())
-  }
+        let blog = &mut ctx.accounts.blog;
+        blog.authority = *ctx.accounts.authority.key;
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
@@ -39,5 +39,5 @@ pub struct Post {
     content: String,
     timestamp: i64,
     blog: Pubkey,
-    previous: Pubkey   
+    previous: Pubkey,
 }
